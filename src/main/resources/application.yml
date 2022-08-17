@@ -1,0 +1,21 @@
+micronaut:
+  application:
+    name: demo
+
+otel:
+  traces:
+    exporter: none
+  service:
+    name: zserver
+  exporter:
+    otlp:
+      endpoint: https://api.honeycomb.io
+      headers: x-honeycomb-team=${HONEYCOMB_API_KEY:``}
+  exclusions:
+    - /health
+    - /env/.*
+
+netty:
+  default:
+    allocator:
+      max-order: 3
